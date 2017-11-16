@@ -13,11 +13,11 @@ public class MainActivity {
 		Scanner in = new Scanner(System.in);
 		String firstLine = in.nextLine();
 		//Checking first input
-		if (ValidationUtils.isValidLine(firstLine)){
+		if (isValidLine(firstLine)){
 			System.out.println(INPUT_SECOND_LINE);
 			String secondLine = in.nextLine();
 			//Checking second input
-			if (ValidationUtils.isValidLine(secondLine)){
+			if (isValidLine(secondLine)){
 				//Convert inputs in arrays
 				ArrayList<Integer> arrayFirstLine = convertToArray(firstLine);
 				ArrayList<Integer> array = convertToArray(secondLine);
@@ -46,6 +46,28 @@ public class MainActivity {
 		
 	}
 	
+	private static boolean isValidLine(String line){
+		//Checking that input is not empty or full of blank spaces
+		if (line.equals("") || line.replaceAll(" ", "").equals("")){
+			return false;
+		}
+		//Checking if each character in line is an integer
+		Scanner scanner = new Scanner(line);
+		while (scanner.hasNext()){
+			try{
+				Integer.parseInt(scanner.next());
+			}catch (NumberFormatException nfe){
+				//If false, return false as validation result and close the scanner
+				System.out.println("NumberFormatException");
+				scanner.close();
+				return false;
+			}
+		}
+		//Successful validation, close the scanner and return true
+		scanner.close();
+		return true;
+	}
+	
 	private static ArrayList<Integer> convertToArray(String input){
 		ArrayList<Integer> array = new ArrayList<Integer>();
 		Scanner in = new Scanner(input);
@@ -57,6 +79,31 @@ public class MainActivity {
 		return array;
 	}
 	
+	/*This exception was created to handle the 1 <= n <= 100.000 condition
+	 *For this exercise, only no-argument constructor is needed 
+	 */
+	private class nConditionException extends Exception{
+		public nConditionException() { 
+			super(); 
+		}
+	}
 	
+	/*This exception was created to handle the 1 <= d <= n condition
+	 * For this exercise, only no-argument constructor is needed
+	 */
+	private class dConditionException extends Exception{
+		public dConditionException() { 
+			super(); 
+		}
+	}
+	
+	/*This exception was created to handle the 1 <= ai <= 1.000.000 condition
+	 * For this exercise, only no-argument constructor is needed
+	 */
+	private class aiConditionException extends Exception{
+		public aiConditionException() { 
+			super(); 
+		}
+	}
 
 }
