@@ -1,6 +1,5 @@
 package logic;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import logic.ExceptionUtils.*;
@@ -10,7 +9,7 @@ public class MainActivity {
 	private static final String INPUT_FIRST_LINE = "Ingrese la primera línea:";
 	private static final String INPUT_SECOND_LINE = "Ingrese la segunda línea:";
 	private static final String EMPTY_LINE_MESSAGE = "La línea debe contener únicamente números enteros";
-	private static final String INDEX_OUT_OF_BOUNDS_MESSAGE = "La longitud seleccionada (n) no coincide con la longitud de la matriz en la segunda línea";
+	private static final String INDEX_OUT_OF_BOUNDS_MESSAGE = "La primera línea debe tener dos números enteros";
 	private static final String N_CONDITION_MESSAGE = "El valor del primer número (n) debe estar entre 1 y 100.000";
 	private static final String D_CONDITION_MESSAGE = "El valor del segundo número (d) debe estar entre 1 y n";
 	private static final String AI_CONDITION_MESSAGE = "Cada elemento de la matriz debe estar entre 1 y 1.000.000";
@@ -23,21 +22,18 @@ public class MainActivity {
 			//Checking first input
 			ValidationUtils.isValidLine(firstLine);
 			//Checking requirements for first line
-			ArrayList<Integer> firstLineArray = convertToArray(firstLine);
-			int n = firstLineArray.get(0);
-			int d = firstLineArray.get(1);
+			int[] firstLineArray = convertToArray(firstLine, 2);
+			int n = firstLineArray[0];
+			int d = firstLineArray[1];
 			ValidationUtils.checkRequirements(n, d);
 			System.out.println(INPUT_SECOND_LINE);
 			String secondLine = in.nextLine();
 			//Checking second input
 			ValidationUtils.isValidLine(secondLine);
-			ArrayList<Integer> array = convertToArray(secondLine);
+			int[] array = convertToArray(secondLine, n);
 			ValidationUtils.checkRequirements(array);
 			//Rotating operation
-			for (int i = 0; i < d; i++){
-				array.add(array.get(0));
-				array.remove(0);
-			}
+			rotateArray(array, d);
 			//String Builder to show result
 			StringBuilder sb = new StringBuilder();
 			for (int a : array)
@@ -47,7 +43,7 @@ public class MainActivity {
 			}
 			System.out.println(sb.toString());
 		}catch (IllegalArgumentException e){
-			//If a line is empty, show
+			//If a line is empty, show message
 			System.out.println(EMPTY_LINE_MESSAGE);
 		}catch (IndexOutOfBoundsException e){
 			//If a line is empty, show
@@ -68,15 +64,33 @@ public class MainActivity {
 	}
 	
 	// This method helps to convert the line into an array
-	private static ArrayList<Integer> convertToArray(String input){
-		ArrayList<Integer> array = new ArrayList<Integer>();
+	private static int[] convertToArray(String input, int length){
+		int[] array = new int[length];
+		int i = 0;
 		Scanner in = new Scanner(input);
 		//in.useDelimiter("[^0-9]+");
 		while (in.hasNextInt()){
-			array.add(in.nextInt());
+			array[i] = in.nextInt();
+			i++;
 		}
 		in.close();
 		return array;
+	}
+	
+	private static void rotateArray(int[] array, int numberOfRotations){
+		int tempInt;
+		int lastElement = array.length - 1;
+		for (int i = 0; i < numberOfRotations; i++){
+			//Save first element in a temporary variable and do rotation
+			tempInt = array[0];
+			//Switching elements positions
+			for (int j = 0; j < lastElement; j++){
+				array[j] = array[j+1];
+			}
+			//Changing last element
+			array[lastElement] = tempInt;
+		}
+		
 	}
 
 }

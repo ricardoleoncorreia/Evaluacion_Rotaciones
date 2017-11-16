@@ -1,6 +1,5 @@
 package logic;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import logic.ExceptionUtils.*;
@@ -43,7 +42,7 @@ public class ValidationUtils {
 	/*This method checks for second line input requirements
 	 * @param array: array to rotate 
 	 */
-	public static void checkRequirements(ArrayList<Integer> array) throws aiConditionException{
+	public static void checkRequirements(int[] array) throws aiConditionException{
 		for (int element : array){
 			if (element < 1 || element > 1000000){
 				throw new ExceptionUtils().new aiConditionException();
