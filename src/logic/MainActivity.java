@@ -5,17 +5,19 @@ import java.util.Scanner;
 
 public class MainActivity {
 
-	private static final String INPUT_LINE = "Ingrese la primera línea:";
+	private static final String INPUT_FIRST_LINE = "Ingrese la primera línea:";
+	private static final String INPUT_SECOND_LINE = "Ingrese la primera línea:";
 	
 	public static void main(String[] args) {
-		System.out.println(INPUT_LINE);
+		System.out.println(INPUT_FIRST_LINE);
 		Scanner in = new Scanner(System.in);
 		String firstLine = in.nextLine();
 		//Checking first input
-		if (ValidationUtils.isFirstLineValid(firstLine)){
+		if (ValidationUtils.isValidLine(firstLine)){
+			System.out.println(INPUT_SECOND_LINE);
 			String secondLine = in.nextLine();
 			//Checking second input
-			if (ValidationUtils.isSecondLineValid(secondLine)){
+			if (ValidationUtils.isValidLine(secondLine)){
 				//Convert inputs in arrays
 				ArrayList<Integer> arrayFirstLine = convertToArray(firstLine);
 				ArrayList<Integer> array = convertToArray(secondLine);
@@ -35,10 +37,10 @@ public class MainActivity {
 				}
 				System.out.println(sb.toString());		
 			}else{
-				
+				System.out.println("Error en la fila 2");
 			}			
 		}else{
-			
+			System.out.println("Error en la fila 1");
 		}
 		in.close();
 		
@@ -54,5 +56,7 @@ public class MainActivity {
 		in.close();
 		return array;
 	}
+	
+	
 
 }
