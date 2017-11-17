@@ -7,21 +7,23 @@ import javax.swing.JOptionPane;
 import logic.ExceptionUtils.*;
 import ui.MainPanel;
 
+/**
+ * This class contains all the code to solve the problem
+ * @author Rick
+ *
+ */
 public class MainActivity {
 
-	//Set all alert messages
-	private static final String EMPTY_LINE_MESSAGE = "Ambas líneas deben contener únicamente números enteros";
+	//Error messages
+	private static final String EMPTY_LINE_MESSAGE = "Ambas líneas deben contener únicamente números enteros separados por espacios";
 	private static final String N_CONDITION_MESSAGE = "El valor del primer número de la primera línea (n) debe estar entre 1 y 100.000";
 	private static final String D_CONDITION_MESSAGE = "El valor del segundo número de la primera línea (d) debe estar entre 1 y ";
 	private static final String AI_CONDITION_MESSAGE = "Cada elemento de la matriz de la segunda línea debe estar entre 1 y 1.000.000";
-	private static final String FIRST_LINE_LENGTH_MESSAGE = "La primera línea debe tener exactamente dos números enteros";
+	private static final String FIRST_LINE_LENGTH_MESSAGE = "La primera línea debe tener exactamente dos números enteros separados por un espacio";
 	private static final String SECOND_LINE_LENGTH_MESSAGE_1 = "La segunda línea debe tener exactamente ";
-	private static final String SECOND_LINE_LENGTH_MESSAGE_2 = " números enteros";
+	private static final String SECOND_LINE_LENGTH_MESSAGE_2 = " números enteros separados por espacios";
 	
 	private static final String ALERT_TITLE = "Revisar las líneas ingresadas";
-	
-	public static final int FIRST_LINE = 1;
-	public static final int SECOND_LINE = 2;
 	
 	private static int n = 0;
 	private static int d = 0;
@@ -35,7 +37,7 @@ public class MainActivity {
 		try{
 			
 			//Checking first input
-			ArrayList<Integer> firstLineArray = ValidationUtils.isValidLine(firstLine, FIRST_LINE, n);
+			ArrayList<Integer> firstLineArray = ValidationUtils.isValidLine(firstLine, ValidationUtils.FIRST_LINE, n);
 			
 			//Checking requirements for first line
 			n = firstLineArray.get(0);
@@ -43,7 +45,7 @@ public class MainActivity {
 			ValidationUtils.checkRequirements(n, d);
 			
 			//Checking second input
-			ArrayList<Integer> array = ValidationUtils.isValidLine(secondLine, SECOND_LINE, n);
+			ArrayList<Integer> array = ValidationUtils.isValidLine(secondLine, ValidationUtils.SECOND_LINE, n);
 			ValidationUtils.checkRequirements(array);
 			
 			//Rotating operation
