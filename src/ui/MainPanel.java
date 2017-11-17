@@ -58,9 +58,11 @@ public class MainPanel extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				String firstLine = mTextFieldLine1.getText().toString();
 				String secondLine = mTextFieldLine2.getText().toString();
-				southPanel.setVisible(true);
-				centerPanel.setVisible(false);
 				MainActivity.executeActivity(firstLine, secondLine);
+				if (!mLabelResultArray.getText().toString().equals("")){
+					southPanel.setVisible(true);
+					centerPanel.setVisible(false);
+				}
 			}	
 		});
 		centerPanel.add(mExecute);
@@ -80,6 +82,7 @@ public class MainPanel extends JPanel{
 				mTextFieldLine2.setText("");
 				southPanel.setVisible(false);
 				centerPanel.setVisible(true);
+				mLabelResultArray.setText("");
 			}
 		});
 		resetPanel.add(mReset);
