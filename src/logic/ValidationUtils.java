@@ -29,10 +29,13 @@ public class ValidationUtils {
 	/**
 	 * This method checks is an input line is valid
 	 * @param line Line to check
-	 * @throws FirstLineLengthException Throws exception when the number of integers in first line is not 2 
+	 * @param lineNumber Number of the line it is working with 
+	 * @param n Number of elements for second line
+	 * @return Integer arrayList
+	 * @throws FirstLineLengthException Throws exception when the number of integers in first line is not 2
 	 * @throws SecondLineLengthException Throws exception when the number of integers in second line is not n
 	 */
-	public static ArrayList<Integer> isValidLine(String line, int lineNumber, int n) throws FirstLineLengthException, SecondLineLengthException {
+	public static ArrayList<Integer> checkLine(String line, int lineNumber, int n) throws FirstLineLengthException, SecondLineLengthException {
 
 		//Checking that input is not empty or full of blank spaces
 		checkIfEmpty(line);

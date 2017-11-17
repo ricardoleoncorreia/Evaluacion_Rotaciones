@@ -39,7 +39,7 @@ public class MainActivity {
 		try{
 			
 			//Checking first input
-			ArrayList<Integer> firstLineArray = ValidationUtils.isValidLine(firstLine, ValidationUtils.FIRST_LINE, n);
+			ArrayList<Integer> firstLineArray = ValidationUtils.checkLine(firstLine, ValidationUtils.FIRST_LINE, n);
 			
 			//Checking requirements for first line
 			n = firstLineArray.get(0);
@@ -47,7 +47,7 @@ public class MainActivity {
 			ValidationUtils.checkRequirements(n, d);
 			
 			//Checking second input
-			ArrayList<Integer> array = ValidationUtils.isValidLine(secondLine, ValidationUtils.SECOND_LINE, n);
+			ArrayList<Integer> array = ValidationUtils.checkLine(secondLine, ValidationUtils.SECOND_LINE, n);
 			ValidationUtils.checkRequirements(array);
 			
 			//Rotating operation
