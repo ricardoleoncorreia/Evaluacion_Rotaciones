@@ -15,12 +15,13 @@ import ui.MainPanel;
 public class MainActivity {
 
 	//Error messages
-	private static final String EMPTY_LINE_MESSAGE = "Ambas líneas deben contener únicamente números enteros separados por espacios";
-	private static final String N_CONDITION_MESSAGE = "El valor del primer número de la primera línea (n) debe estar entre 1 y 100.000";
-	private static final String D_CONDITION_MESSAGE = "El valor del segundo número de la primera línea (d) debe estar entre 1 y ";
-	private static final String AI_CONDITION_MESSAGE = "Cada elemento de la matriz de la segunda línea debe estar entre 1 y 1.000.000";
-	private static final String FIRST_LINE_LENGTH_MESSAGE = "La primera línea debe tener exactamente dos números enteros separados por un espacio";
-	private static final String SECOND_LINE_LENGTH_MESSAGE_1 = "La segunda línea debe tener exactamente ";
+	private static final String EMPTY_LINE_MESSAGE = "Ambas líneas deben contener únicamente\nnúmeros enteros separados por espacios";
+	private static final String N_CONDITION_MESSAGE = "El valor del primer número de la primera línea (n)\ndebe estar entre 1 y 100.000";
+	private static final String D_CONDITION_MESSAGE = "El valor del segundo número de la primera línea (d)\ndebe estar entre 1 y ";
+	private static final String D_CONDITION_MESSAGE_N1 = "Si el primer número de la primera fila es 1,\nel valor del segundo número debe ser 1";
+	private static final String AI_CONDITION_MESSAGE = "Cada elemento de la matriz de la segunda línea\ndebe estar entre 1 y 1.000.000";
+	private static final String FIRST_LINE_LENGTH_MESSAGE = "La primera línea debe tener exactamente dos números\nenteros separados por un espacio";
+	private static final String SECOND_LINE_LENGTH_MESSAGE_1 = "La segunda línea debe tener exactamente\n";
 	private static final String SECOND_LINE_LENGTH_MESSAGE_2 = " números enteros separados por espacios";
 	
 	private static final String ALERT_TITLE = "Revisar las líneas ingresadas";
@@ -67,7 +68,11 @@ public class MainActivity {
 		} catch (DConditionException e){
 			
 			//If d condition is not satisfied, show message
-			JOptionPane.showMessageDialog(null, D_CONDITION_MESSAGE + n, ALERT_TITLE, JOptionPane.ERROR_MESSAGE);
+			if (n == 1){
+				JOptionPane.showMessageDialog(null, D_CONDITION_MESSAGE_N1, ALERT_TITLE, JOptionPane.ERROR_MESSAGE);
+			} else {
+				JOptionPane.showMessageDialog(null, D_CONDITION_MESSAGE + n, ALERT_TITLE, JOptionPane.ERROR_MESSAGE);
+			}
 			
 		} catch (AiConditionException e){
 			
