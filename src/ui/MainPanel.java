@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -82,7 +83,10 @@ public class MainPanel extends JPanel{
 		southPanel = new JPanel();
 		southPanel.setLayout(new GridLayout(1, 3));
 		southPanel.add(mLabelResultText);
-		southPanel.add(mLabelResultArray);
+		//Add scroll to result label in case a very long array is provided
+		JScrollPane scroll = new JScrollPane();
+		scroll.setViewportView(mLabelResultArray);
+		southPanel.add(scroll);
 		JPanel resetPanel = new JPanel();  //For visual polish, this button needs a panel
 		mReset.addActionListener(new ActionListener(){
 			/*Define reset button action

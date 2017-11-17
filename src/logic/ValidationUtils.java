@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 import logic.ExceptionUtils.*;
 
-/**This class provides helpful methods for MainActivity validation processes
+/**
+ * This class provides helpful methods for MainActivity validation processes
  * like line validation and requirements checkers
  */
 public class ValidationUtils {

@@ -5,7 +5,8 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 
-/**This class is the responsible for creating the UI
+/**
+ * This class is the responsible for creating the UI
  * 
  * @author Rick
  *
@@ -22,7 +23,8 @@ public class UserInterface {
 
 }
 
-/**This class sets MainFrame
+/**
+ * This class sets MainFrame
  * 
  * @author Rick
  *
