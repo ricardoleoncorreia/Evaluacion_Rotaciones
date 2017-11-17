@@ -33,7 +33,7 @@ class MainFrame extends JFrame{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private static final String FRAME_TITLE = "Rotacion a la izquierda";
+	private static final String FRAME_TITLE = "Rotación a la izquierda";
 
 	public MainFrame(){
 		
