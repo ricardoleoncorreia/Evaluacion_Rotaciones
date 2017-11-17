@@ -23,6 +23,7 @@ public class MainActivity {
 	private static final String FIRST_LINE_LENGTH_MESSAGE = "La primera línea debe tener exactamente dos números\nenteros separados por un espacio";
 	private static final String SECOND_LINE_LENGTH_MESSAGE_1 = "La segunda línea debe tener exactamente\n";
 	private static final String SECOND_LINE_LENGTH_MESSAGE_2 = " números enteros separados por espacios";
+	private static final String SECOND_LINE_LENGTH_MESSAGE_N1 = "La segunda línea debe tener un único número entero";
 	
 	private static final String ALERT_TITLE = "Revisar las líneas ingresadas";
 	
@@ -87,7 +88,11 @@ public class MainActivity {
 		} catch (SecondLineLengthException e) {
 			
 			//If second line length is not the right one, show message
-			JOptionPane.showMessageDialog(null, SECOND_LINE_LENGTH_MESSAGE_1 + n + SECOND_LINE_LENGTH_MESSAGE_2, ALERT_TITLE, JOptionPane.ERROR_MESSAGE);
+			if (n == 1){
+				JOptionPane.showMessageDialog(null, SECOND_LINE_LENGTH_MESSAGE_N1, ALERT_TITLE, JOptionPane.ERROR_MESSAGE);				
+			} else {
+				JOptionPane.showMessageDialog(null, SECOND_LINE_LENGTH_MESSAGE_1 + n + SECOND_LINE_LENGTH_MESSAGE_2, ALERT_TITLE, JOptionPane.ERROR_MESSAGE);				
+			}
 			
 		}
 	}
