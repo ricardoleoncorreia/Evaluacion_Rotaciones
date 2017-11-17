@@ -24,8 +24,9 @@ class MainFrame extends JFrame{
 		int height = (int) screenSize.getHeight();
 		int width = (int) screenSize.getWidth();
 		setTitle("Rotacion a la izquierda");
-		setBounds(width/4, height/4, width/2, height/2);
+		setBounds(width/4, height/4, width/2, height/4);
 		add(new MainPanel());
+		pack();
 	}
 	
 }
