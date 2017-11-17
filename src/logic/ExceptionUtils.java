@@ -2,8 +2,9 @@ package logic;
 
 public class ExceptionUtils {
 
-	/*This exception was created to handle the 1 <= n <= 100.000 condition
-	 *For this exercise, only no-argument constructor is needed 
+	/**
+	 * This exception was created to handle n condition
+	 * For this exercise, only no-argument constructor is needed 
 	 */
 	public class NConditionException extends Exception{
 		
@@ -14,7 +15,8 @@ public class ExceptionUtils {
 		}
 	}
 	
-	/*This exception was created to handle the 1 <= d <= n condition
+	/**
+	 * This exception was created to handle d condition
 	 * For this exercise, only no-argument constructor is needed
 	 */
 	public class DConditionException extends Exception{
@@ -26,7 +28,8 @@ public class ExceptionUtils {
 		}
 	}
 	
-	/*This exception was created to handle the 1 <= ai <= 1.000.000 condition
+	/**
+	 * This exception was created to handle ai condition
 	 * For this exercise, only no-argument constructor is needed
 	 */
 	public class AiConditionException extends Exception{
@@ -38,7 +41,8 @@ public class ExceptionUtils {
 		}
 	}
 	
-	/*This exception was created to alert when the first line is shorter or longer than expected
+	/**
+	 * This exception was created to alert when the first line is shorter or longer than expected
 	 * For this exercise, only no-argument constructor is needed
 	 */
 	public class FirstLineLengthException extends Exception{
@@ -50,7 +54,8 @@ public class ExceptionUtils {
 		}
 	}
 	
-	/*This exception was created to alert when the second line is shorter or longer than expected
+	/**
+	 * This exception was created to alert when the second line is shorter or longer than expected
 	 * For this exercise, only no-argument constructor is needed
 	 */
 	public class SecondLineLengthException extends Exception{
