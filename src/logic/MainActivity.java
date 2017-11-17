@@ -35,26 +35,20 @@ public class MainActivity {
 			//Rotating operation
 			rotateArray(array, d);
 			//String Builder to show result
-			StringBuilder sb = new StringBuilder();
-			for (int a : array)
-			{
-			    sb.append(a);
-			    sb.append(" ");
-			}
-			System.out.println(sb.toString());
+			showResult(array);
 		}catch (IllegalArgumentException e){
 			//If a line is empty, show message
 			System.out.println(EMPTY_LINE_MESSAGE);
 		}catch (IndexOutOfBoundsException e){
 			//If a line is empty, show
 			System.out.println(INDEX_OUT_OF_BOUNDS_MESSAGE);
-		}catch (nConditionException e){
+		}catch (NConditionException e){
 			//If a line is empty, show
 			System.out.println(N_CONDITION_MESSAGE);
-		}catch (dConditionException e){
+		}catch (DConditionException e){
 			//If a line is empty, show
 			System.out.println(D_CONDITION_MESSAGE);
-		}catch (aiConditionException e){
+		}catch (AiConditionException e){
 			//If a line is empty, show
 			System.out.println(AI_CONDITION_MESSAGE);
 		}finally{
@@ -62,7 +56,7 @@ public class MainActivity {
 			in.close();
 		}
 	}
-	
+
 	// This method helps to convert the line into an array
 	private static int[] convertToArray(String input, int length){
 		int[] array = new int[length];
@@ -77,6 +71,7 @@ public class MainActivity {
 		return array;
 	}
 	
+	//This method rotates the array
 	private static void rotateArray(int[] array, int numberOfRotations){
 		int tempInt;
 		int lastElement = array.length - 1;
@@ -93,4 +88,15 @@ public class MainActivity {
 		
 	}
 
+	//This method builds and shows the result for client
+	private static void showResult(int[] array) {
+		StringBuilder sb = new StringBuilder();
+		for (int a : array)
+		{
+		    sb.append(a);
+		    sb.append(" ");
+		}
+		System.out.println(sb.toString());
+	}
+	
 }
