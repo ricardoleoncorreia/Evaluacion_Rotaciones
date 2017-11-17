@@ -30,7 +30,11 @@ public class ValidationUtils {
 	 * @param n: length of the array
 	 * @param d: number of rotations
 	 */
-	public static void checkRequirements(int n, int d) throws NConditionException, DConditionException{
+	public static void checkRequirements(int n, int d, int arrayLength) 
+			throws NConditionException, DConditionException, FirstLineLengthException{
+		if (arrayLength != 2){
+			throw new ExceptionUtils().new FirstLineLengthException();
+		}
 		if (n < 1 || n > 100000){
 			throw new ExceptionUtils().new NConditionException();
 		}
@@ -42,7 +46,10 @@ public class ValidationUtils {
 	/*This method checks for second line input requirements
 	 * @param array: array to rotate 
 	 */
-	public static void checkRequirements(int[] array) throws AiConditionException{
+	public static void checkRequirements(int n, int[] array) throws AiConditionException, SecondLineLengthException{
+		if (array.length != n){
+			throw new ExceptionUtils().new SecondLineLengthException(); 
+		}
 		for (int element : array){
 			if (element < 1 || element > 1000000){
 				throw new ExceptionUtils().new AiConditionException();

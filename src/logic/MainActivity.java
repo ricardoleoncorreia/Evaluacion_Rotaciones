@@ -13,9 +13,13 @@ public class MainActivity {
 	private static final String N_CONDITION_MESSAGE = "El valor del primer número (n) debe estar entre 1 y 100.000";
 	private static final String D_CONDITION_MESSAGE = "El valor del segundo número (d) debe estar entre 1 y n";
 	private static final String AI_CONDITION_MESSAGE = "Cada elemento de la matriz debe estar entre 1 y 1.000.000";
+	private static final String FIRST_LINE_LENGTH_MESSAGE = "La primera línea debe tener exactamente dos números enteros";
+	private static final String SECOND_LINE_LENGTH_MESSAGE_1 = "La primera línea debe tener exactamente ";
+	private static final String SECOND_LINE_LENGTH_MESSAGE_2 = " números enteros";
 	
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
+		int n = 0;
 		try{
 			System.out.println(INPUT_FIRST_LINE);
 			String firstLine = in.nextLine();
@@ -23,35 +27,41 @@ public class MainActivity {
 			ValidationUtils.isValidLine(firstLine);
 			//Checking requirements for first line
 			int[] firstLineArray = convertToArray(firstLine, 2);
-			int n = firstLineArray[0];
+			n = firstLineArray[0];
 			int d = firstLineArray[1];
-			ValidationUtils.checkRequirements(n, d);
+			ValidationUtils.checkRequirements(n, d, firstLineArray.length);
 			System.out.println(INPUT_SECOND_LINE);
 			String secondLine = in.nextLine();
 			//Checking second input
 			ValidationUtils.isValidLine(secondLine);
 			int[] array = convertToArray(secondLine, n);
-			ValidationUtils.checkRequirements(array);
+			ValidationUtils.checkRequirements(n, array);
 			//Rotating operation
 			rotateArray(array, d);
 			//String Builder to show result
 			showResult(array);
-		}catch (IllegalArgumentException e){
+		} catch (IllegalArgumentException e){
 			//If a line is empty, show message
 			System.out.println(EMPTY_LINE_MESSAGE);
-		}catch (IndexOutOfBoundsException e){
+		} catch (IndexOutOfBoundsException e){
 			//If a line is empty, show
 			System.out.println(INDEX_OUT_OF_BOUNDS_MESSAGE);
-		}catch (NConditionException e){
+		} catch (NConditionException e){
 			//If a line is empty, show
 			System.out.println(N_CONDITION_MESSAGE);
-		}catch (DConditionException e){
+		} catch (DConditionException e){
 			//If a line is empty, show
 			System.out.println(D_CONDITION_MESSAGE);
-		}catch (AiConditionException e){
+		} catch (AiConditionException e){
 			//If a line is empty, show
 			System.out.println(AI_CONDITION_MESSAGE);
-		}finally{
+		} catch (FirstLineLengthException e) {
+			// TODO Auto-generated catch block
+			System.out.println(FIRST_LINE_LENGTH_MESSAGE);
+		} catch (SecondLineLengthException e) {
+			// TODO Auto-generated catch block
+			System.out.println(SECOND_LINE_LENGTH_MESSAGE_1 + n + SECOND_LINE_LENGTH_MESSAGE_2);
+		} finally {
 			//Before program finishes, close Scanner
 			in.close();
 		}
@@ -62,7 +72,6 @@ public class MainActivity {
 		int[] array = new int[length];
 		int i = 0;
 		Scanner in = new Scanner(input);
-		//in.useDelimiter("[^0-9]+");
 		while (in.hasNextInt()){
 			array[i] = in.nextInt();
 			i++;
