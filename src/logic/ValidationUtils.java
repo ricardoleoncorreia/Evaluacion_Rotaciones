@@ -1,5 +1,6 @@
 package logic;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import logic.ExceptionUtils.*;
@@ -30,11 +31,7 @@ public class ValidationUtils {
 	 * @param n: length of the array
 	 * @param d: number of rotations
 	 */
-	public static void checkRequirements(int n, int d, int arrayLength) 
-			throws NConditionException, DConditionException, FirstLineLengthException{
-		if (arrayLength != 2){
-			throw new ExceptionUtils().new FirstLineLengthException();
-		}
+	public static void checkRequirements(int n, int d, int arrayLength)	throws NConditionException, DConditionException{
 		if (n < 1 || n > 100000){
 			throw new ExceptionUtils().new NConditionException();
 		}
@@ -46,10 +43,7 @@ public class ValidationUtils {
 	/*This method checks for second line input requirements
 	 * @param array: array to rotate 
 	 */
-	public static void checkRequirements(int n, int[] array) throws AiConditionException, SecondLineLengthException{
-		if (array.length != n){
-			throw new ExceptionUtils().new SecondLineLengthException(); 
-		}
+	public static void checkRequirements(int n, ArrayList<Integer> array) throws AiConditionException{
 		for (int element : array){
 			if (element < 1 || element > 1000000){
 				throw new ExceptionUtils().new AiConditionException();

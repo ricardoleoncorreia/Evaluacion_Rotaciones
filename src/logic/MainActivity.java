@@ -1,5 +1,6 @@
 package logic;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import logic.ExceptionUtils.*;
@@ -9,32 +10,35 @@ public class MainActivity {
 	private static final String INPUT_FIRST_LINE = "Ingrese la primera línea:";
 	private static final String INPUT_SECOND_LINE = "Ingrese la segunda línea:";
 	private static final String EMPTY_LINE_MESSAGE = "La línea debe contener únicamente números enteros";
-	private static final String INDEX_OUT_OF_BOUNDS_MESSAGE = "La primera línea debe tener dos números enteros";
 	private static final String N_CONDITION_MESSAGE = "El valor del primer número (n) debe estar entre 1 y 100.000";
 	private static final String D_CONDITION_MESSAGE = "El valor del segundo número (d) debe estar entre 1 y n";
 	private static final String AI_CONDITION_MESSAGE = "Cada elemento de la matriz debe estar entre 1 y 1.000.000";
 	private static final String FIRST_LINE_LENGTH_MESSAGE = "La primera línea debe tener exactamente dos números enteros";
-	private static final String SECOND_LINE_LENGTH_MESSAGE_1 = "La primera línea debe tener exactamente ";
+	private static final String SECOND_LINE_LENGTH_MESSAGE_1 = "La segunda línea debe tener exactamente ";
 	private static final String SECOND_LINE_LENGTH_MESSAGE_2 = " números enteros";
+	
+	private static final int FIRST_LINE = 1;
+	private static final int SECOND_LINE = 2;
+	
+	private static int n = 0;
 	
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
-		int n = 0;
 		try{
 			System.out.println(INPUT_FIRST_LINE);
 			String firstLine = in.nextLine();
 			//Checking first input
 			ValidationUtils.isValidLine(firstLine);
 			//Checking requirements for first line
-			int[] firstLineArray = convertToArray(firstLine, 2);
-			n = firstLineArray[0];
-			int d = firstLineArray[1];
-			ValidationUtils.checkRequirements(n, d, firstLineArray.length);
+			ArrayList<Integer> firstLineArray = convertToArray(firstLine, FIRST_LINE);
+			n = firstLineArray.get(0);
+			int d = firstLineArray.get(1);
+			ValidationUtils.checkRequirements(n, d, firstLineArray.size());
 			System.out.println(INPUT_SECOND_LINE);
 			String secondLine = in.nextLine();
 			//Checking second input
 			ValidationUtils.isValidLine(secondLine);
-			int[] array = convertToArray(secondLine, n);
+			ArrayList<Integer> array = convertToArray(secondLine, SECOND_LINE);
 			ValidationUtils.checkRequirements(n, array);
 			//Rotating operation
 			rotateArray(array, d);
@@ -43,9 +47,6 @@ public class MainActivity {
 		} catch (IllegalArgumentException e){
 			//If a line is empty, show message
 			System.out.println(EMPTY_LINE_MESSAGE);
-		} catch (IndexOutOfBoundsException e){
-			//If a line is empty, show
-			System.out.println(INDEX_OUT_OF_BOUNDS_MESSAGE);
 		} catch (NConditionException e){
 			//If a line is empty, show
 			System.out.println(N_CONDITION_MESSAGE);
@@ -68,37 +69,38 @@ public class MainActivity {
 	}
 
 	// This method helps to convert the line into an array
-	private static int[] convertToArray(String input, int length){
-		int[] array = new int[length];
-		int i = 0;
+	private static ArrayList<Integer> convertToArray(String input, int lineNumber) 
+			throws FirstLineLengthException, SecondLineLengthException{
+		//Get the array
+		ArrayList<Integer> array = new ArrayList<Integer>();
 		Scanner in = new Scanner(input);
 		while (in.hasNextInt()){
-			array[i] = in.nextInt();
-			i++;
+			array.add(in.nextInt());
 		}
 		in.close();
+		//Check the array
+		if (lineNumber == FIRST_LINE){
+			if (array.size() != 2){
+				throw new ExceptionUtils().new FirstLineLengthException();
+			}
+		} else {
+			if (array.size() != n){
+				throw new ExceptionUtils().new SecondLineLengthException(); 
+			}
+		}
 		return array;
 	}
 	
 	//This method rotates the array
-	private static void rotateArray(int[] array, int numberOfRotations){
-		int tempInt;
-		int lastElement = array.length - 1;
+	private static void rotateArray(ArrayList<Integer> array, int numberOfRotations){
 		for (int i = 0; i < numberOfRotations; i++){
-			//Save first element in a temporary variable and do rotation
-			tempInt = array[0];
-			//Switching elements positions
-			for (int j = 0; j < lastElement; j++){
-				array[j] = array[j+1];
-			}
-			//Changing last element
-			array[lastElement] = tempInt;
+			array.add(array.get(0));
+			array.remove(0);
 		}
-		
 	}
 
 	//This method builds and shows the result for client
-	private static void showResult(int[] array) {
+	private static void showResult(ArrayList<Integer> array) {
 		StringBuilder sb = new StringBuilder();
 		for (int a : array)
 		{
