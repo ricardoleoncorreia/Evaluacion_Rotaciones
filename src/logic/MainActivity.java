@@ -1,7 +1,6 @@
 package logic;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
@@ -21,8 +20,8 @@ public class MainActivity {
 	
 	private static final String ALERT_TITLE = "Revisar las líneas ingresadas";
 	
-	private static final int FIRST_LINE = 1;
-	private static final int SECOND_LINE = 2;
+	public static final int FIRST_LINE = 1;
+	public static final int SECOND_LINE = 2;
 	
 	private static int n = 0;
 	private static int d = 0;
@@ -36,17 +35,15 @@ public class MainActivity {
 		try{
 			
 			//Checking first input
-			ValidationUtils.isValidLine(firstLine);
+			ArrayList<Integer> firstLineArray = ValidationUtils.isValidLine(firstLine, FIRST_LINE, n);
 			
 			//Checking requirements for first line
-			ArrayList<Integer> firstLineArray = convertToArray(firstLine, FIRST_LINE);
 			n = firstLineArray.get(0);
 			d = firstLineArray.get(1);
 			ValidationUtils.checkRequirements(n, d);
 			
 			//Checking second input
-			ValidationUtils.isValidLine(secondLine);
-			ArrayList<Integer> array = convertToArray(secondLine, SECOND_LINE);
+			ArrayList<Integer> array = ValidationUtils.isValidLine(secondLine, SECOND_LINE, n);
 			ValidationUtils.checkRequirements(array);
 			
 			//Rotating operation
@@ -88,38 +85,6 @@ public class MainActivity {
 		}
 	}
 
-	/**
-	 * This method helps to convert the line into an array
-	 * @param input Line to be converted
-	 * @param lineNumber Line number
-	 * @return ArrayList of integers
-	 * @throws FirstLineLengthException Input problem for line 1
-	 * @throws SecondLineLengthException Input problem for line 2
-	 */
-	private static ArrayList<Integer> convertToArray(String input, int lineNumber) throws FirstLineLengthException, SecondLineLengthException{
-
-		//Get the array
-		ArrayList<Integer> array = new ArrayList<Integer>();
-		Scanner in = new Scanner(input);
-		while (in.hasNextInt()){
-			array.add(in.nextInt());
-		}
-		in.close();
-		
-		//Check the array
-		if (lineNumber == FIRST_LINE){
-			if (array.size() != 2){
-				throw new ExceptionUtils().new FirstLineLengthException();
-			}
-		} else {
-			if (array.size() != n){
-				throw new ExceptionUtils().new SecondLineLengthException(); 
-			}
-		}
-		
-		return array;
-	}
-	
 	/**
 	 * This method rotates the array
 	 * @param array Array to rotate

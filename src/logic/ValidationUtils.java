@@ -14,25 +14,40 @@ public class ValidationUtils {
 	/**
 	 * This method checks is an input line is valid
 	 * @param line Line to check
+	 * @throws FirstLineLengthException 
+	 * @throws SecondLineLengthException 
 	 */
-	public static void isValidLine(String line){
+	public static ArrayList<Integer> isValidLine(String line, int lineNumber, int n) throws FirstLineLengthException, SecondLineLengthException{
 
 		//Checking that input is not empty or full of blank spaces
 		if (line.equals("") || line.replaceAll(" ", "").equals("")){
 			throw new IllegalArgumentException();
 		}
 		
-		/*Checking if each element in line is an integer
+		/* Checking if each element in line is an integer
 		 * When a NumberFormatException appears, IllegalArgumentException will handle it
 		 */
+		ArrayList<Integer> array = new ArrayList<Integer>();
 		Scanner scanner = new Scanner(line);
 		while (scanner.hasNext()){
-			Integer.parseInt(scanner.next());
+			array.add(Integer.parseInt(scanner.next()));
 		}
 		
 		//Close the scanner and return true
 		scanner.close();
 		
+		//Check the array
+		if (lineNumber == MainActivity.FIRST_LINE){
+			if (array.size() != 2){
+				throw new ExceptionUtils().new FirstLineLengthException();
+			}
+		} else {
+			if (array.size() != n){
+				throw new ExceptionUtils().new SecondLineLengthException(); 
+			}
+		}
+		
+		return array;
 	}
 	
 	/**
