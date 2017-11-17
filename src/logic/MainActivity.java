@@ -9,7 +9,7 @@ import ui.MainPanel;
 
 /**
  * This class contains all the code to solve the problem
- * @author Rick
+ * @author Ricardo León
  *
  */
 public class MainActivity {

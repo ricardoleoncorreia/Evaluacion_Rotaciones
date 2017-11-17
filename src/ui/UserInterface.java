@@ -7,9 +7,7 @@ import javax.swing.JFrame;
 
 /**
  * This class is the responsible for creating the UI
- * 
- * @author Rick
- *
+ * @author Ricardo León
  */
 public class UserInterface {
 
@@ -25,9 +23,6 @@ public class UserInterface {
 
 /**
  * This class sets MainFrame
- * 
- * @author Rick
- *
  */
 class MainFrame extends JFrame{
 	

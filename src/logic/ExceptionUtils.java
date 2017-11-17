@@ -2,8 +2,7 @@ package logic;
 
 /**
  * This class is a summary of all custom exceptions created for this exercise
- * @author Rick
- *
+ * @author Ricardo León
  */
 public class ExceptionUtils {
 

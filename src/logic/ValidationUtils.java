@@ -8,6 +8,7 @@ import logic.ExceptionUtils.*;
 /**
  * This class provides helpful methods for MainActivity validation processes
  * like line validation and requirements checkers
+ * @author Ricardo León
  */
 public class ValidationUtils {
 
