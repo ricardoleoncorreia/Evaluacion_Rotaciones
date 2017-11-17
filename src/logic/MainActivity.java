@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import logic.ExceptionUtils.*;
+import ui.MainPanel;
 
 public class MainActivity {
 
-	private static final String INPUT_FIRST_LINE = "Ingrese la primera línea:";
-	private static final String INPUT_SECOND_LINE = "Ingrese la segunda línea:";
+	/*private static final String INPUT_FIRST_LINE = "Ingrese la primera línea:";
+	private static final String INPUT_SECOND_LINE = "Ingrese la segunda línea:";*/
 	private static final String EMPTY_LINE_MESSAGE = "La línea debe contener únicamente números enteros";
 	private static final String N_CONDITION_MESSAGE = "El valor del primer número (n) debe estar entre 1 y 100.000";
 	private static final String D_CONDITION_MESSAGE = "El valor del segundo número (d) debe estar entre 1 y n";
@@ -22,11 +23,11 @@ public class MainActivity {
 	
 	private static int n = 0;
 	
-	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
+	public static void executeActivity(String firstLine, String secondLine) {
+		//Scanner in = new Scanner(System.in);
 		try{
-			System.out.println(INPUT_FIRST_LINE);
-			String firstLine = in.nextLine();
+			/*System.out.println(INPUT_FIRST_LINE);
+			String firstLine = in.nextLine();*/
 			//Checking first input
 			ValidationUtils.isValidLine(firstLine);
 			//Checking requirements for first line
@@ -34,8 +35,8 @@ public class MainActivity {
 			n = firstLineArray.get(0);
 			int d = firstLineArray.get(1);
 			ValidationUtils.checkRequirements(n, d, firstLineArray.size());
-			System.out.println(INPUT_SECOND_LINE);
-			String secondLine = in.nextLine();
+			/*System.out.println(INPUT_SECOND_LINE);
+			String secondLine = in.nextLine();*/
 			//Checking second input
 			ValidationUtils.isValidLine(secondLine);
 			ArrayList<Integer> array = convertToArray(secondLine, SECOND_LINE);
@@ -48,24 +49,24 @@ public class MainActivity {
 			//If a line is empty, show message
 			System.out.println(EMPTY_LINE_MESSAGE);
 		} catch (NConditionException e){
-			//If a line is empty, show
+			//If n condition is not satisfied, show message
 			System.out.println(N_CONDITION_MESSAGE);
 		} catch (DConditionException e){
-			//If a line is empty, show
+			//If d condition is not satisfied, show message
 			System.out.println(D_CONDITION_MESSAGE);
 		} catch (AiConditionException e){
-			//If a line is empty, show
+			//If ai condition is not satisfied, show message
 			System.out.println(AI_CONDITION_MESSAGE);
 		} catch (FirstLineLengthException e) {
-			// TODO Auto-generated catch block
+			//If first line length is not the right one, show message
 			System.out.println(FIRST_LINE_LENGTH_MESSAGE);
 		} catch (SecondLineLengthException e) {
-			// TODO Auto-generated catch block
+			//If second line length is not the right one, show message
 			System.out.println(SECOND_LINE_LENGTH_MESSAGE_1 + n + SECOND_LINE_LENGTH_MESSAGE_2);
-		} finally {
+		}/* finally {
 			//Before program finishes, close Scanner
 			in.close();
-		}
+		}*/
 	}
 
 	// This method helps to convert the line into an array
@@ -107,7 +108,7 @@ public class MainActivity {
 		    sb.append(a);
 		    sb.append(" ");
 		}
-		System.out.println(sb.toString());
+		MainPanel.setResultToUI(sb.toString());
 	}
 	
 }

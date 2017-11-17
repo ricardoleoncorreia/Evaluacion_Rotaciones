@@ -11,11 +11,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import logic.MainActivity;
+
 public class MainPanel extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	
-	private JLabel mLabelLine1, mLabelLine2, mLabelExample1, mLabelExample2, mLabelResultText, mLabelResultArray;
+	private JLabel mLabelLine1, mLabelLine2, mLabelExample1, mLabelExample2, mLabelResultText;
+	private static JLabel mLabelResultArray;
 	private JTextField mTextFieldLine1, mTextFieldLine2;
 	private JButton mExecute, mReset;
 	private JPanel southPanel, centerPanel;
@@ -54,9 +57,10 @@ public class MainPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String firstLine = mTextFieldLine1.getText().toString();
-				String SecondLine = mTextFieldLine2.getText().toString();
+				String secondLine = mTextFieldLine2.getText().toString();
 				southPanel.setVisible(true);
 				centerPanel.setVisible(false);
+				MainActivity.executeActivity(firstLine, secondLine);
 			}	
 		});
 		centerPanel.add(mExecute);
@@ -95,6 +99,10 @@ public class MainPanel extends JPanel{
 		mTextFieldLine2 = new JTextField();
 		mExecute = new JButton(EXECUTE_BUTTON);
 		mReset = new JButton(RESET_BUTTON);
+	}
+	
+	public static void setResultToUI(String result){
+		mLabelResultArray.setText(result);
 	}
 	
 }
